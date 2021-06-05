@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ContactsActivity extends AppCompatActivity {
+public class ContactsActivity extends AppCompatActivity { //поиеи можно удалить было этот клас но пака пусь живёт
 
     RecyclerView recyclerView;
     static class Contact{

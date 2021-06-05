@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ConversationActivity2 extends AppCompatActivity {
+public class ConversationActivity2 extends AppCompatActivity { //класс для беседы
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

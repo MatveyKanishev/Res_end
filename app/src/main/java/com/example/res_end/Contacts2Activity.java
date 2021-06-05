@@ -59,27 +59,27 @@ public class Contacts2Activity extends AppCompatActivity {
         }
         public String getNumbder() {
             return numbder;
-        }
+        }                     //
 
         public void setNumbder(String numbder) {
             this.numbder = numbder;
-        }
+        } //
 
         public long getId() {
             return id;
-        }
+        }                                //
 
         public void setId(long id) {
             this.id = id;
-        }
+        }                      //  вот вот это кароче вроде конструктор
 
         public String getName() {
             return name;
-        }
+        }                          //
 
         public void setName(String name) {
             this.name = name.trim();
-        }
+        }    //
 
         public long getImage_id() {
             return image_id;
@@ -99,13 +99,13 @@ class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder>{
 
         @NonNull
         @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {//не знаю что это
             return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_view,parent,false));
         }
 
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {//это тоже не знаю
             holder.bind(contacts.get(position));
 
 
@@ -130,10 +130,10 @@ class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder>{
                     public void onClick(View v) {
                         int positionIndex = getAdapterPosition();
                         Toast toast = Toast.makeText(getApplicationContext(),
-                               ""+ contacts.get(positionIndex), Toast.LENGTH_SHORT);
+                               ""+ contacts.get(positionIndex), Toast.LENGTH_SHORT);// ох сколько нервов съел даный метод (вот эта штука при нажатии на обьект из списка должна выводить что-то но выводит адрисс где это что то вроде храниться)
                         toast.show();
                         Intent intent = new Intent(Contacts2Activity.this, ConversationActivity2.class);
-                        startActivity(intent);
+                        startActivity(intent);//переход в активность беседы
                     }
                 });
 
