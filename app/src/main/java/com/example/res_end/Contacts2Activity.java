@@ -39,6 +39,8 @@ public class Contacts2Activity extends AppCompatActivity {
     BD db;
 
     SQLiteDatabase wdb, rdb;
+    TextView textView;
+    ArrayList<Integer> in = new ArrayList<>();
 
 
 
@@ -46,6 +48,7 @@ public class Contacts2Activity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     static class Contact{
+
         long id;
         String name;
         long image_id;
@@ -92,6 +95,7 @@ public class Contacts2Activity extends AppCompatActivity {
 class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder>{
         List<Contacts2Activity.Contact> contacts = new ArrayList<>();
 
+
         public void setContacts(List<Contact> contacts) {
             this.contacts = contacts;
             notifyDataSetChanged();
@@ -125,13 +129,15 @@ class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder>{
                 imageView = itemView.findViewById(R.id.contactImage);
                 ret = itemView.findViewById(R.id.imageView);
                 phoneView = itemView.findViewById(R.id.phone);
+                textView=findViewById(R.id.qwerty);
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int positionIndex = getAdapterPosition();
                         Toast toast = Toast.makeText(getApplicationContext(),
-                               ""+ contacts.get(positionIndex), Toast.LENGTH_SHORT);// ох сколько нервов съел даный метод (вот эта штука при нажатии на обьект из списка должна выводить что-то но выводит адрисс где это что то вроде храниться)
+                               ""+ in.get(positionIndex), Toast.LENGTH_SHORT);// ох сколько нервов съел даный метод (вот эта штука при нажатии на обьект из списка должна выводить что-то но выводит адрисс где это что то вроде храниться)
                         toast.show();
+                        ConversationActivity2.tel= (String) nameView.getText();
                         Intent intent = new Intent(Contacts2Activity.this, ConversationActivity2.class);
                         startActivity(intent);//переход в активность беседы
                     }
@@ -181,6 +187,7 @@ class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder>{
                 ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                 ContactsContract.CommonDataKinds.Phone.PHOTO_ID,
                 ContactsContract.CommonDataKinds.Phone.NUMBER}, null, null, ContactsContract.Contacts.DISPLAY_NAME);
+        int i =0;
         ArrayList<Contact> contacts = new ArrayList<>();
         if (cur!=null && cur.moveToFirst()){
             do {
@@ -190,6 +197,8 @@ class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder>{
                 String phone = cur.getString(3);
                 Contact contact = new Contact(id,name.trim(),image_id,phone);
                 contacts.add(contact);
+                in.add(i);
+                i++;
             }while (cur.moveToNext());
         }
 
