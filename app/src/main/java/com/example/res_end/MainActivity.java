@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         wdb = db.getWritableDatabase();
         rdb = db.getReadableDatabase();
         ContentResolver resolver = getContentResolver();//  \/ 1ничего - все сообщения 2 inbox-полученные 3 sent-отправленные
-        Cursor cur = resolver.query(Uri.parse("content://sms/sent"), new String[]{"_id","date","address","body"},null,null,null);//пираметры запросса
+        Cursor cur = resolver.query(Uri.parse("content://sms"), new String[]{"_id","date","address","body"},null,null,null);//пираметры запросса
         StringBuilder builder = new StringBuilder();
         if (cur!=null && cur.moveToFirst() ){
             do{
@@ -116,17 +116,17 @@ public class MainActivity extends AppCompatActivity {
 
                 builder.append("   0   ");
                 builder.append(cur.getInt(0));
-                contentValues.put(BD.COLUMN_IND, cur.getInt(0));
+//                contentValues.put(BD.COLUMN_IND, cur.getInt(0));
                 builder.append("   0   ");
                 builder.append(cur.getString(1));
-                contentValues.put(BD.COLUMN_TIME, cur.getInt(1));
+//                contentValues.put(BD.COLUMN_TIME, cur.getInt(1));
                 builder.append("   0   ");
                 builder.append(cur.getString(2));
-                contentValues.put(BD.COLUMN_NUMBER, cur.getString(2));//вот это типо добавление в базу данных данных но это не точно
+//                contentValues.put(BD.COLUMN_NUMBER, cur.getString(2));//добавление в базу данных данных но непонятно работае л
                 builder.append("   0   ");
                 builder.append(cur.getString(3));
-                contentValues.put(BD.COLUMN_MESSAGE, cur.getInt(3));
-                wdb.insert(BD.TABLE_NAME, null, contentValues);
+//                contentValues.put(BD.COLUMN_MESSAGE, cur.getInt(3));
+//                wdb.insert(BD.TABLE_NAME, null, contentValues);
                 System.out.println(cur.getCount());
 
                 builder.append("\n");

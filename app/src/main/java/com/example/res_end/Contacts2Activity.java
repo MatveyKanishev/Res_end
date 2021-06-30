@@ -134,10 +134,11 @@ class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder>{
                     @Override
                     public void onClick(View v) {
                         int positionIndex = getAdapterPosition();
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                               ""+ in.get(positionIndex), Toast.LENGTH_SHORT);// ох сколько нервов съел даный метод (вот эта штука при нажатии на обьект из списка должна выводить что-то но выводит адрисс где это что то вроде храниться)
-                        toast.show();
-                        ConversationActivity2.tel= (String) nameView.getText();
+//                        Toast toast = Toast.makeText(getApplicationContext(),
+//                               ""+ in.get(positionIndex), Toast.LENGTH_SHORT);// ох сколько нервов съел даный метод (вот эта штука при нажатии на обьект из списка должна выводить что-то но выводит адрисс где это что то вроде храниться)
+//                        toast.show();
+                        ConversationActivity2.name= (String) nameView.getText();
+                        ConversationActivity2.tel = (String) phoneView.getText();
                         Intent intent = new Intent(Contacts2Activity.this, ConversationActivity2.class);
                         startActivity(intent);//переход в активность беседы
                     }
