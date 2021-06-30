@@ -35,7 +35,7 @@ public class ConversationActivity2 extends AppCompatActivity {
         }
         String number1[] = tel.split("-");
         tel="";
-        for (int i = 0; i < number.length; i++) {
+        for (int i = 0; i < number1.length; i++) {
             tel=tel+(number1[i]);
         }
         Toast toast = Toast.makeText(getApplicationContext(),
