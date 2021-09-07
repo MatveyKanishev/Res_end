@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder builder = new StringBuilder();
         if (cur!=null && cur.moveToFirst() ){
             do{
-                ContentValues contentValues = new ContentValues();//штука которая поидеи помогает построчно заполнять базу данных
+//                ContentValues contentValues = new ContentValues();//штука которая поидеи помогает построчно заполнять базу данных
 
                 builder.append("   0   ");
                 builder.append(cur.getInt(0));
