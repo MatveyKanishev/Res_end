@@ -1,4 +1,4 @@
-package com.example.res_end;
+package com.example.res_end;//старая версия списка контактов
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ContactsActivity extends AppCompatActivity { //поиеи можно удалить было этот клас но пака пусь живёт
+
 
     RecyclerView recyclerView;
     static class Contact{

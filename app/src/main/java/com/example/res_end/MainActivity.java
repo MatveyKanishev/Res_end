@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { //главный экран он не выводиться но он есть
 
     Button btn;
     TextView outView, btnSC1, btnSC2;
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestContactsPermission() {
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){//вот что тут происходит я неебу
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
             requestPermissions(new String[]{Manifest.permission.READ_CONTACTS,Manifest.permission.WRITE_CONTACTS}, CODE_PERMISSION_CONTACTS);
         }
     }
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED
                         && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS)== PackageManager.PERMISSION_GRANTED;
     }
-    void todo_sms(){ //метод для получения смс (каторый внезапно начал работать)
+    void todo_sms(){ //метод для получения смс
         db = new BD(getBaseContext());
         wdb = db.getWritableDatabase();
         rdb = db.getReadableDatabase();
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder builder = new StringBuilder();
         if (cur!=null && cur.moveToFirst() ){
             do{
-//                ContentValues contentValues = new ContentValues();//штука которая поидеи помогает построчно заполнять базу данных
+//                ContentValues contentValues = new ContentValues();
 
                 builder.append("   0   ");
                 builder.append(cur.getInt(0));
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 //                contentValues.put(BD.COLUMN_TIME, cur.getInt(1));
                 builder.append("   0   ");
                 builder.append(cur.getString(2));
-//                contentValues.put(BD.COLUMN_NUMBER, cur.getString(2));//добавление в базу данных данных но непонятно работае л
+//                contentValues.put(BD.COLUMN_NUMBER, cur.getString(2));//добавление в базу данных данных, не работае
                 builder.append("   0   ");
                 builder.append(cur.getString(3));
 //                contentValues.put(BD.COLUMN_MESSAGE, cur.getInt(3));
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.N) метод для получения sms который почемуто престал работать (он лучше потому что он выводит дату получения или отправки в стандартном виде)
+//    @RequiresApi(api = Build.VERSION_CODES.N) метод для получения sms, не работает
 //    public  void GetSMSList(View v){
 //
 //        TextView mText =findViewById(R.id.output);
