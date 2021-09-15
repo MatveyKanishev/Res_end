@@ -17,6 +17,7 @@
         android:theme="@style/Theme.Res_end">
         <activity android:name=".ConversationActivity2">
 
+
         </activity>
         <activity android:name=".MainActivity">
 

@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/rr"
         android:layout_width="wrap_content"
@@ -46,14 +47,29 @@
 
     </ListView>
 
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="25sp"
+        android:layout_width="342dp"
+        android:layout_height="55dp"
         android:layout_margin="15dp"
+        android:layout_marginBottom="12dp"
         android:background="@color/purple_500"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/text"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="49dp"
+        android:layout_height="48dp"
+        android:background="@color/purple_700"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
