@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Res_end</string>
+    <string name="mon">понедельник</string>
+    <string name="tue">вторник</string>
+    <string name="wed">среда</string>
+    <string name="thu">четверг</string>
+    <string name="fri">пятница</string>
+    <string name="sat">суббота</string>
+    <string name="sun">воскресенье</string>
+
+    <string name="Jan">январь</string>
+    <string name="Fed">февраль</string>
+    <string name="Mar">март</string>
+    <string name="Apr">апрель</string>
+    <string name="May">май</string>
+    <string name="Jun">июнь</string>
+    <string name="Jul">июль</string>
+    <string name="Aug">август</string>
+    <string name="Sep">сентябрь</string>
+    <string name="Oct">октябрь</string>
+    <string name="Nov">ноябрь</string>
+    <string name="Dec">декабрь</string>
+
+
+
 </resources>
