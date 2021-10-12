@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,10 +28,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ConversationActivity2 extends AppCompatActivity {
     public static String tel, name; //класс для беседы
     Adapter adapter;
+    Timer mTimer;
     ArrayList<Sms> list_sms = new ArrayList<>();
     TextView textView, textView2, textView3, text;
     String SENT_SMS = "SENT_SMS";
@@ -41,6 +45,8 @@ public class ConversationActivity2 extends AppCompatActivity {
     Intent sent_intent = new Intent(SENT_SMS);
     Intent deliver_intent = new Intent(DELIVER_SMS);
     String tel2;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -67,25 +73,105 @@ public class ConversationActivity2 extends AppCompatActivity {
         for (int i = 0; i < number1.length; i++) {
             tel=tel+(number1[i]);
         }
-//        todo_sms_cont();
-        GetSMSList();
+
+        mTimer = new Timer();
+
+
         button.setOnClickListener(new View.OnClickListener() {//отправка сообщения
 
             @Override
             public void onClick(View v) {
                 if (!text.getText().toString().equals("")){
+                    Date d = new Date();
+
+
+                    CharSequence s  = DateFormat.format("dd-MM-yyyy HH:mm:ss ", d.getTime());
 
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(tel, null, text.getText().toString(), sent_pi, deliver_pi);
+
                 text.setText("");
+
                 }
             }
         });
+        GetSMSList();
 
 
 
 
 
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+//    private void startAlarm() {
+//        Uri uriSms = Uri.parse("content://sms");
+//        Context context=this;
+//
+//
+//
+//        SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss ");
+//
+//        mTimer.scheduleAtFixedRate(new TimerTask() {
+//
+//
+//                                       @Override
+//                                       public void run() {
+//                                           Cursor cur = context.getContentResolver().query(uriSms, null,null,null,null);
+//                                           startManagingCursor(cur);
+//
+//                                           if (cur!=null && cur.moveToFirst() ){
+//                                               do{
+//
+//                                                   if (tel.equals(cur.getString(2))){
+////                    builder.append(format1.format(cur.getLong(4)));
+////                    builder.append("_jlzf86_");
+////                    builder.append(cur.getString(12));
+////                    builder.append("_jlzf86_");
+////                    builder.append(cur.getString(6));
+////                    builder.append("di;set;jkhfyrty");
+//                                                       list_sms.add(new Sms(format1.format(cur.getLong(4)), cur.getString(12), cur.getString(6) ));
+//
+//                                                   }
+//
+//                                               }while (cur.moveToNext());
+////            builder.append("\n");
+////            builder.append("\n");
+////            String[] words = builder.toString().split("di;set;jkhfyrty");
+////
+////            for (int j = 0; j <words.length; j++) {
+////                String[] words2 = words[j].split("_jlzf86_");
+////                list_sms.add(new Sms(words2[0],words2[1],words2[2]));
+////            }
+//                                               adapter = new Adapter(context,list_sms);
+//
+////            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.list_item_2,
+////                    R.id.texty, words);
+////                                               listView.setAdapter(adapter);
+//
+//                                               if(cur!=null) cur.close();
+//                                           }
+//
+//                                           runOnUiThread(new Runnable() {
+//                                               @Override
+//                                               public void run() {
+//
+//                                                   listView.setAdapter(adapter);
+//
+//                                               }
+//                                           });
+//                                       }
+//                                   }
+//                , 0        // Это задержка старта, сейчас 0;
+//                , 50000); // Это Ваш период в 10 минут;
+//    }
+
+    private void cancelTimer() {
+
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+        }
     }
 //    void todo_sms_cont(){ //метод для получения смс определённого контакта (старый)
 //        ContentResolver resolver = getContentResolver();//  \/ 1 ничего - все сообщения 2 inbox-полученные 3 sent-отправленные
@@ -231,47 +317,38 @@ public class ConversationActivity2 extends AppCompatActivity {
 //    }
     @RequiresApi(api = Build.VERSION_CODES.N)// новый метод для получения sms
     public  void GetSMSList(){
-
         Uri uriSms = Uri.parse("content://sms");
         Context context=this;
         Cursor cur = context.getContentResolver().query(uriSms, null,null,null,null);
+
+
+
+
         startManagingCursor(cur);
-//        StringBuilder builder = new StringBuilder();
+
         SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss ");
 
         if (cur!=null && cur.moveToFirst() ){
             do{
 
                 if (tel.equals(cur.getString(2))){
-//                    builder.append(format1.format(cur.getLong(4)));
-//                    builder.append("_jlzf86_");
-//                    builder.append(cur.getString(12));
-//                    builder.append("_jlzf86_");
-//                    builder.append(cur.getString(6));
-//                    builder.append("di;set;jkhfyrty");
+////
                     list_sms.add(new Sms(format1.format(cur.getLong(4)), cur.getString(12), cur.getString(6) ));
-
+//
                 }
 
             }while (cur.moveToNext());
-//            builder.append("\n");
-//            builder.append("\n");
-//            String[] words = builder.toString().split("di;set;jkhfyrty");
 //
-//            for (int j = 0; j <words.length; j++) {
-//                String[] words2 = words[j].split("_jlzf86_");
-//                list_sms.add(new Sms(words2[0],words2[1],words2[2]));
-//            }
+//
             adapter = new Adapter(this, list_sms);
 
-//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.list_item_2,
-//                    R.id.texty, words);
+//
             listView.setAdapter(adapter);
 
             if(cur!=null) cur.close();
         }
-
-    }
+//
+}
 
 @Override
 protected void onResume() {
@@ -292,7 +369,7 @@ protected void onResume() {
         public void onReceive(Context context, Intent intent) {
             switch (getResultCode()){
                 case Activity.RESULT_OK:
-                    Toast.makeText(context, "Delivered", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "доставлено", Toast.LENGTH_LONG).show();
                     break;
                 default:
                     Toast.makeText(context, "Error deliver", Toast.LENGTH_LONG).show();
@@ -306,7 +383,7 @@ protected void onResume() {
         public void onReceive(Context context, Intent intent) {
             switch (getResultCode()){
                 case Activity.RESULT_OK:
-                    Toast.makeText(context, "Sented", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "отправлено", Toast.LENGTH_LONG).show();
                     break;
                 default:
                     Toast.makeText(context, "Error sent", Toast.LENGTH_LONG).show();

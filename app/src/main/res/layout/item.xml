@@ -35,18 +35,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="#777777"
+        />
 
     <TextView
+        android:id="@+id/sent_time"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/sent_time"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="292dp"
         android:textSize="15sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
